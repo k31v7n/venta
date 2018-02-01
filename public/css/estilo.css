@@ -1,0 +1,148 @@
+html,body{
+    height:100%;
+}
+body{
+    background: #EEEEEE;
+}
+button{
+    outline: none;
+}
+.letra{
+    font-size: 12px;
+}
+.navbar-pri {
+    background: #424242;
+    border:1px solid #424242;
+    border-radius: 0;
+    margin-bottom: 10px;
+    height: 6%;
+}
+.abajo{
+    margin-bottom: 9px;
+}
+.ntext{
+    color: #FFFFFF;
+    font-size: 15px;
+}
+
+.sombra{
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+.ajusta{
+    padding: 0 9px;
+    padding-bottom: 0;
+    height: 89.5%;
+}
+.alto{
+    height: 100%;
+}
+
+.navbar-default .navbar-brand{
+    color:#1E1E1E;
+}
+
+.navbar-default .navbar-nav>li{
+    margin-top: 4px;
+}
+.navbar-default .navbar-nav>li>a{
+    color :#000;
+    border:1px solid transparent;
+    border-left:1px solid #EEEEEE;
+    padding: 10px
+}
+
+.opc-vent .activa:last-of-type {
+    background: #E0E0E0;
+}
+
+.activas{
+    background: #E0E0E0;
+}
+
+/* Para form y detalle*/
+.sinradio{
+    border-radius: 0;
+}
+.sinpading{
+    padding: 0;
+}
+.sinmargen{
+    margin: 0;
+}
+.h4{
+    font-size: 16px;
+}
+
+.ajusta-p1{
+    padding: 0 5px 0 0;
+}
+.ajusta-p2{
+    padding: 0 0 0 5px;
+    height: 89%;
+}
+
+.todo{
+    width: 100%;
+}
+
+.btn-nuevo{
+    background: #C62828;
+    text-align: center;
+    margin-left: 5px;
+    border-left: 1px solid #C62828;
+}
+
+.btn-rojo{
+    color: red;
+    padding: 0 8px;
+}
+
+.btn-rojo:hover,.btn-rojo:focus, .btn-rojo:active, .btn-rojo:visited {
+    color: red;
+}
+
+.alerte{
+    font-size    : 12px;
+    padding      : 3px;
+    margin-bottom: 7px;
+}
+
+.navbar-header .navbar-brand:hover{
+    color:#000;
+}
+
+.blanco{
+    background: #E0E0E0;
+
+}
+
+.table>tbody>tr>.table-pr{
+    padding: 4px;
+    line-height: 0;
+    vertical-align: middle;
+}
+
+.inp-lista{
+    border-radius: 0;
+    height: 25px;
+}
+@media (max-width: 767px){
+    .navbar-default .navbar-nav>li>a{
+        border:none;
+    }
+    .ajusta-p1, .ajusta-p2{
+        padding: 0;
+    }
+    .ajusta-p2, .ajusta, .alto{
+        height: auto;
+    }
+    .btn-nuevo{
+        margin: 0;
+    }
+    .acciones{
+        margin-top: 10px;
+    }
+}
