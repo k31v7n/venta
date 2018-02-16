@@ -51,15 +51,17 @@ class Pedido extends CI_Controller
 					$ars["cantidad"] = $valor;
 				}
 
-				$ars["subtotal"] = $ven->producto->precio_venta * $valor;
-				$ars["total"]    = $ars["subtotal"];
+				$ars["subtotal"]     = $ven->producto->precio_venta * $valor;
+				$ars["total"]        = $ars["subtotal"];
+				$ars["precioventa"] = $ven->producto->precio_venta;
 				#$valor = ($this->input->post("cantidad")) ? $this->input->post("cantidad") : 1;
 
 				if (!empty($ven->agregado)) {
 					$cantidad        = $ven->agregado->cantidad + $valor;
-					$ars['cantidad'] = $cantidad;
-					$ars['subtotal'] = $ven->agregado->precioventa * $cantidad;
-					$ars['total']    = $ars['subtotal'] - $ven->agregado->descuento;
+					$ars['cantidad']    = $cantidad;
+					$ars["precioventa"] = $ven->agregado->precioventa;
+					$ars['subtotal']    = $ven->agregado->precioventa * $cantidad;
+					$ars['total']       = $ars['subtotal'] - $ven->agregado->descuento;
 				}
 
 				if ($ven->agregarProducto($ars)){

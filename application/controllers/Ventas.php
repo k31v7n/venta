@@ -4,13 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Ventas extends CI_Controller {
 	function __construct(){
 		parent:: __construct();
-		$_SESSION['UsuarioID'] = 1;
-
-		$this->load->model(array(
+		if(login()){
+			$this->load->model(array(
 						"Venta_model"
 						));
-		$this->datos['scripts'] = script();
-
+			$this->datos['scripts'] = script();
+		} else {
+			redirect("sesion");
+		}
 	}
 
 	public function index() {
@@ -170,11 +171,16 @@ class Ventas extends CI_Controller {
 			}
 		}
 
-		if ($ven->agregarProducto($arg)){
-			$mensaje = "Se eliminó correctamente";
+		if(!empty($arg)){
+			if ($ven->agregarProducto($arg)){
+				$mensaje = "Se eliminó correctamente";
+			} else {
+				$mensaje = $ven->getMensaje();
+				$exito = false;
+			}
 		} else {
-			$mensaje = $ven->getMensaje();
-			$exito = false;
+			$mensaje = "¡Error!, debe ingresar una cantidad";
+			$exito   = false;
 		}
 
 		$this->datos['mensaje'] = $mensaje;

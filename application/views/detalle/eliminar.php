@@ -13,7 +13,7 @@
 					<p>Ingrese la cantidad a eliminar</p>
 					<input type="number" class="form-control" id="cantidad" placeholder="Cantidad...">
 					<div class="checkbox">
-						<label><input type="checkbox" id="todo" value="<?php echo $producto->cantidad ?>"> Eliminar Todo</label>
+						<label><input type="checkbox" id="todo" value="<?php echo $producto->cantidad ?>"> Eliminar Todo el producto</label>
 					</div>
 				</div>
 			</div>

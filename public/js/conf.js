@@ -68,3 +68,21 @@ function cerrar(id1="", id2=""){
 		$("#"+id2).show();
 	}
 }
+
+/* Para el menu */
+$(document).on("click", "#btn-menu", function(){
+	if($(this).is(":checked")){
+		$(".capa-menu").fadeIn();
+		document.getElementById("cont-menu").style.margin = 0;
+	} else {
+		$(".capa-menu").fadeOut();
+		document.getElementById("cont-menu").style.marginRight = "-21%";
+	}
+})
+
+$(document).on("click",".capa-menu", function(){
+	$("#btn-menu").prop('checked', false); 
+	
+	$(".capa-menu").fadeOut();
+	document.getElementById("cont-menu").style.marginRight = "-21%";
+})

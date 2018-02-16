@@ -68,9 +68,9 @@ class Pedido_model extends CI_Model
 			$cantidad = ($ars["cantidad"]) ? $ars["cantidad"] : 1;
 			$this->db
 				 ->set('venta', $this->venta->venta)
-				 ->set('producto', $this->producto->producto)
+				 ->set('producto', $this->producto->producto);
 				 #->set('cantidad', $cantidad)
-				 ->set('precioventa', $this->producto->precio_venta);
+				 #->set('precioventa', $this->producto->precio_venta);
 				 #->set('subtotal', $this->producto->precio_venta)
 				 #->set('total', $this->producto->precio_venta);
 

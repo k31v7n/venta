@@ -1,0 +1,23 @@
+.login{
+	background: #FFF;
+	position: absolute;
+	height: 300px;
+	width: 450px;
+	top: 50%;
+	left: 50%;
+	margin: -150px 0 0 -225px;
+	padding: 10px;
+}
+
+.limg img{
+	height: 80px;
+}
+
+@media (max-width: 767px){
+	.login{
+		width: 300px;
+		top: 50%;
+		left: 50%;
+		margin: -150px 0 0 -150px;
+	}
+}
