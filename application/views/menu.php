@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="navbar-header col-sm-12">
 			<a class="navbar-brand ntext" href="#" style="color: #FFF;">
-				<i class="glyphicon glyphicon-home"></i> Arnol
+				<i class="glyphicon glyphicon-home"></i> <?php echo $_SESSION["NombreEmpresa"]; ?>
 			</a>
 
 			<div class="navbar-text ntext pull-right" style="color: #FFF;">
@@ -32,10 +32,10 @@
 				</a>
 				<!--<a href="javascript:;" class="list-group-item opcmenu" style="border-radius: 0; border: 1px solid #f2f2f2;">
 					<i class="glyphicon glyphicon-stats"></i> Reportes
-				</a>
-				<a href="javascript:;" class="list-group-item opcmenu" style="border-radius: 0; border: 1px solid #f2f2f2;">
-					<i class="glyphicon glyphicon-list-alt"></i> Mantenimiento
 				</a>-->
+				<a href="<?php echo base_url("index.php/producto/mantenimiento") ?>" class="list-group-item opcmenu" style="border-radius: 0; border: 1px solid #f2f2f2;">
+					<i class="glyphicon glyphicon-list-alt"></i> Mantenimiento Productos
+				</a>
 				<a href="<?php echo base_url("index.php/sesion/cerrarSesion") ?>" class="list-group-item opcmenu" style="border-radius: 0; border: 1px solid #f2f2f2;">
 					<i class="glyphicon glyphicon-log-out"></i> Cerrar Sesión
 				</a>

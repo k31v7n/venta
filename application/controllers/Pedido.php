@@ -109,10 +109,11 @@ class Pedido extends CI_Controller
 			$_POSt["direccion"] = "S/D";
 		}
 
-		$monto = $_POST["efectivo"] + $_POST["tarjeta"] + $_POST["credito"];
+		//$monto = $_POST["efectivo"] + $_POST["tarjeta"] + $_POST["credito"];
 		$resumen = $ven->getResumenVenta();
+		$topagos = sumatotal($ven->getFormaPago(), "monto");
 
-		if($monto >= 1 && $resumen->total == $monto) {
+		if($resumen->total == $topagos) {
 			if($ven->guardarCobro($_POST)){
 				$this->datos["venta"]   = $_POST["venta"];
 				$this->datos["ultima"]  = $ven->getUltimaVenta();
@@ -123,9 +124,39 @@ class Pedido extends CI_Controller
 			}
 		} else {
 			$this->datos["mensaje"] = "El monto total no es igual al de la venta";
+			$this->datos["venta"]    = $_POST["venta"];
 		}
 
 		$this->load->view("venta/detallecobro", $this->datos);
+	}
+
+	function formtipopago($venta){
+		$v = new Venta_model($venta);
+		$lpago  = $v->getFormaPago();
+		$vtotal = $v->getResumenVenta()->total;
+		$spago  = sumatotal($lpago, 'monto');
+
+		$this->datos["plista"]  = $lpago;
+		$this->datos["agrmas"]  = ($vtotal == $spago)?true:false;
+		$this->datos["idventa"] = $venta;
+		$this->datos["tpago"]   = $this->Conf_model->getFormaPago();
+		$this->load->view("venta/pago", $this->datos);	
+	}
+
+	function guardapago(){
+		$exito   = 0;
+		$mensaje = "";
+		if($this->Venta_model->guardaFormapago($_POST)){
+			$mensaje.= "Actualizacón correcta en la forma de pago";
+			$exito   = 1;
+		} else {
+			$mensaje.= $this->Venta_model->getMensaje();
+		}
+
+		$this->datos["mensaje"] = $mensaje;
+		$this->datos["exito"]   = $exito;
+
+		enviarJSON($this->datos);
 	}
 }
 ?>

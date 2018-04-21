@@ -12,6 +12,13 @@ class Sesion_model extends CI_Model
 		} else {
 			return false;
 		}
+	}
+
+	public function getEmpresaUsuario($user){
+		return $this->db
+					->where("empresa", $user)
+					->get("empresa")
+					->row();
 	}	
 }
 ?>

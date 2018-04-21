@@ -74,3 +74,66 @@ function cargarMas(reg){
 	})
 
 }
+
+function 	abrirForm(args){
+	var carga = 1;
+	var datos = "";
+	switch(args.opcion){
+		case 1:
+			var url = base_url("index.php/producto/form_categoria/");
+			var id  = "Fcategoria";
+			break;
+		case 2:
+			break;
+		case 3:
+			var url   = base_url("index.php/producto/listacategoria/");
+			var id    = "clista";
+			var carga = 2;
+			break;
+		case 4:
+			var url   = base_url("index.php/producto/listaproductos/");
+			var id    = "ListaProductos";
+			var carga = 2;
+			var datos = {"inicio":0,"categoria":args.registro};
+			$("#xcategoria").val(args.registro);
+			document.getElementById("nocategoria").innerHTML = args.nombre;
+			cerrar('Fproducto');
+			break;
+		case 5:
+			if($("#xcategoria").val() == '') {
+				alerta({"titulo":"Producto","mensaje":"Es necesario seleccionar una categoria"});
+				return false;
+			}
+			var url   = base_url("index.php/producto/nuevoproducto/");
+			var id    = "Fproducto";
+			var datos = {"categoria":$("#xcategoria").val()};
+			break;
+		default:
+			break;
+	}
+
+	if (args.registro) {
+		var url = url+args.registro;
+	}
+	verCargando(id,carga);
+
+	$.post(url, datos, function(data){
+		document.getElementById(id).innerHTML = data;
+		abrir(id);
+	})
+
+}
+
+$(document).on("submit","#FxormProducto", function(event){
+	event.preventDefault();
+
+	var url = this.action;
+	var datos = $(this).serialize();
+	activarBoton("btnGuardar","Guardando...");
+
+	$.post(url, datos, function(data){
+		notificar(data.exito, data.mensaje);
+		abrirForm({"opcion":data.opcion,"registro":data.producto});
+		abrirForm({"opcion":4,"registro":data.registro});
+	})
+})

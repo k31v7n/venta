@@ -12,7 +12,7 @@ if($venta){
 	Captura de Venta
 	<div class="pull-right">
 		<div class="btn-group">
-			<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<button class="btn btn-default btn-xs dropdown-toggle btnV" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="glyphicon glyphicon-cog"></i>
 			</button>
 			<ul class="dropdown-menu dropdown-menu-right">
@@ -27,7 +27,7 @@ if($venta){
 				<li><a href="javascript:;" onclick="accionVenta(<?php echo "{$idventa}, 3";?>);">Anular</a></li>
 			</ul>
 		</div>
-		<button class="btn btn-xs btn-default" onclick="abrirProducto(<?php echo "{$idventa}";?>);">
+		<button class="btn btn-xs btn-default btnV" onclick="abrirProducto(<?php echo "{$idventa}";?>);">
 				<i class="glyphicon glyphicon-shopping-cart"></i>
 			</button>
 	</div>
@@ -49,6 +49,6 @@ if($venta){
 		</div>
 	<?php endif ?>
 	<div class="col-md-2 sinpading">
-		<button class="btn btn-primary sinradio todo" id="btnGuardar">Agregar</button>
+		<button class="btn btn-primary sinradio todo btnV" id="btnGuardar">Agregar</button>
 	</div>
 </form>

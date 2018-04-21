@@ -2,11 +2,13 @@
 class Venta_model extends Pedido_model {
 
 	public $venta;
+	public $empresa;
 
 	function __construct($id=''){
 		if (!empty($id)) {
 			$this->verunaVenta($id);
 		}
+		$this->empresa = $_SESSION["EmpresaID"];
 	}
 
 	public function verunaVenta($id){
@@ -45,6 +47,7 @@ class Venta_model extends Pedido_model {
 		$crea = $this->db->set("fecha","now()",false)
 				         ->set("usuario", $_SESSION['UsuarioID'])
 				 		 ->set("status", 1)
+				 		 ->set("empresa", $this->empresa)
 				 	 	 ->insert("venta");
 
 		if ($crea) {

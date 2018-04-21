@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="<?= base_url('public/confirm/jquery-confirm.min.css')?>">
 	<link rel="stylesheet" href="<?= base_url('public/css/estilo.css') ?>">
 	<link rel="stylesheet" href="<?= base_url('public/css/menu.css') ?>">
+	<link rel="stylesheet" href="<?= base_url('public/css/otros.css') ?>">
 
 	<script src="<?= base_url('public/js/jquery.js') ?>"></script>
 	<script src="<?= base_url('public/js/jquery-ui.js') ?>"></script>

@@ -41,7 +41,7 @@ function nuevaVenta(){
 	    	})
 	    },
 	    cancel: function(){
-	    	$("#btncrea").button('reset')
+	    	$("#btncrea").button('reset');
 	    }
 	});
 }

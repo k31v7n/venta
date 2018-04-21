@@ -1,0 +1,16 @@
+.mbordenav{
+	padding: 0 10px 10px 10px;
+}
+
+.mbordepright{
+	padding: 0 5px 0 10px;
+}
+
+.mbordepleft{
+	padding: 0 10px 0 5px;
+}
+
+.table-smx{
+	font-size: 12px;
+	padding: 2px;
+}

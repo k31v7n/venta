@@ -5,7 +5,8 @@ class Producto extends CI_Controller {
 		parent::__construct();
 		if(login()){
 			$this->load->model(array("Venta_model","Producto_model"));
-			$this->datos['scripts'] = script();
+			$this->datos['scripts'] = array(
+                    (object)array('ruta' => 'public/js/producto.js', 'print' => TRUE));
 		} else {
 			redirect("sesion");
 		}
@@ -74,6 +75,79 @@ class Producto extends CI_Controller {
 		$this->datos["venta"]   = $venta;
 
 		enviarJSON($this->datos);
+	}
+
+	function mantenimiento(){
+		$this->datos["menu"]      = "menu";
+		$this->datos["vista"]     = "producto/cuerpo";
+		$this->datos["categoria"] = $this->Producto_model->getcategoria();
+		$this->load->view("principal", $this->datos);
+	}
+
+	function form_categoria($categoria=""){
+		$ca = new Producto_model($categoria);
+		$datos['categoria'] = $ca->cate;
+		$datos['accion']    = base_url("index.php/producto/guardacategoria/{$categoria}");
+
+		$this->load->view("producto/form_categoria", $datos);
+	}
+
+	function listacategoria(){
+		$datos["categoria"]  = $this->Producto_model->getcategoria();
+		$this->load->view("producto/clista", $datos);
+	}
+
+	function guardacategoria($categoria=""){
+		$ca = new Producto_model($categoria);
+		$dato["exito"]    = 0;
+		$dato["registro"] = $categoria;
+		$dato["opcion"]   = 1;
+
+		if(verDatos($_POST, "nombre")){
+			if($ca->guardaCategaria($_POST)){
+				$dato["mensaje"] = "Se guardó la categoria {$ca->cate->nombre}";
+				$dato["exito"]	= 1;
+				$dato["registro"] = $ca->cate->categoria;
+			} else {
+				$dato["mensaje"] = $ca->getmensaje();
+			}
+		}
+		enviarJSON($dato);
+	}
+
+	function listaproductos($categoria){
+		$this->datos['lista'] = $this->Producto_model->getProductos($_POST);
+		$this->load->view("producto/plista", $this->datos);
+	}
+
+	function nuevoproducto($producto=""){
+		$pro = new Producto_model($this->input->post("categoria"));
+		$this->datos['ncategoria'] = $pro->cate->nombre;
+		$this->load->library("form/Fproducto");
+		$p = new Fproducto();
+		$p->setUrl(base_url("index.php/producto/guardaproducto/{$pro->cate->categoria}/{$producto}"));	
+		$p->setdatoproducto($pro->verunProducto($producto));
+		$ver = array_merge($this->datos, $p->crear());
+		$this->load->view("producto/form_producto", $ver);
+	}
+
+	function guardaproducto($categoria, $producto=""){
+		$pro = new Producto_model($categoria);
+		$pro->verunProducto($producto);
+		$data['exito']    = 0;
+		$dato["registro"] = $categoria;
+		$dato["opcion"]   = 5;
+		if($pro->guardaproducto($_POST)) {
+			$mensaje = "Se actualizó la lista de productos";
+			$data['exito'] = 1;
+			$data['opcion'] = 5;
+			$data['producto'] = $pro->producto->producto;
+			$dato["registro"] = $pro->producto->categoria;
+		} else {
+			$mensaje = $pro->getmensaje();
+		}
+		$data['mensaje'] = $mensaje;
+		enviarJSON($data);
 	}
 }
 ?>

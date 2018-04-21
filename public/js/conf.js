@@ -69,6 +69,10 @@ function cerrar(id1="", id2=""){
 	}
 }
 
+function abrir(id){
+	$("#"+id).show("blind");
+}
+
 /* Para el menu */
 $(document).on("click", "#btn-menu", function(){
 	if($(this).is(":checked")){
@@ -86,3 +90,11 @@ $(document).on("click",".capa-menu", function(){
 	$(".capa-menu").fadeOut();
 	document.getElementById("cont-menu").style.marginRight = "-21%";
 })
+
+function alerta(args){
+	$.alert({
+		keyboardEnabled: true,
+	    title: args.titulo,
+	    content: args.mensaje,
+	});
+}

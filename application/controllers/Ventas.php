@@ -75,6 +75,8 @@ class Ventas extends CI_Controller {
 				break;
 			case 3: # Anular
 				$arg["anulado"] = 1;
+				$arg["fecha_anulado"] = date("Y-m-d H:i:s");
+
 				$mensaje = "¡Error!, no fue posible anular la venta";
 
 				if($ven->actualizaVenta($arg)){

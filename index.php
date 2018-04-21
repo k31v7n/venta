@@ -89,6 +89,10 @@ switch (ENVIRONMENT)
 		exit(1); // EXIT_ERROR
 }
 
+  if (ini_get('date.timezone') == '')
+    {
+        date_default_timezone_set('GMT');
+    } 
 /*
  *---------------------------------------------------------------
  * SYSTEM DIRECTORY NAME

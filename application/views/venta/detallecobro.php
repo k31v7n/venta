@@ -5,16 +5,13 @@ $credito  = "0.00";
 $venta    = "";
 if ($detalle) {
 	$Venta    = $detalle->venta;
-	$efectivo = $detalle->efectivo;
-	$tarjeta  = $detalle->tarjeta;
-	$credito  = $detalle->credito;
 }
 ?>
 
 <?php if (isset($mensaje)): ?>
 	<div class="col-sm-12 text-center">
 		<p><?php echo $mensaje; ?></p>
-		<button class="btn btn-sm btn-default" onclick="cerrar('cobrarform','resumencont')">
+		<button class="btn btn-sm btn-default" onclick="cargarCobro($venta)">
 			<i class="glyphicon glyphicon-repeat"></i> Reintentar
 		</button>
 	</div>
@@ -41,7 +38,9 @@ if ($detalle) {
 			<span style="margin-left: 30px;">Dirección: <?php echo $detalle->direccion ?></span>
 		</p>
 		<div class="text-danger text-right">
-			<b>Monto: <?php echo $efectivo + $tarjeta + $credito ?></b>
+			<b>Descuento: <?php echo $detalle->descuento ?></b><br>
+			<b>Subtotal: <?php echo $detalle->subtotal ?></b><br>
+			<b>Total: <?php echo $detalle->total ?></b>
 		</div>
 		<div class="text-center">
 			<button class="btn btn-sm btn-default" onclick="cargarVenta(<?php echo $ultima; ?>, 1)">

@@ -92,4 +92,16 @@ if ( ! function_exists('formatoFecha')) {
 		}
 	}
 }
+
+if(!function_exists("sumatotal")){
+	function sumatotal($arg='', $campo=''){
+		$total = 0;
+		if($arg && $campo){ 
+			foreach($arg as $row){
+				$total += $row->$campo;
+			}
+		}	
+		return $total;
+	}
+}
 ?>

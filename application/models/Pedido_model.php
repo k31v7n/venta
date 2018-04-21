@@ -89,9 +89,8 @@ class Pedido_model extends CI_Model
 								a.numero,
 								a.serie,
 								b.total,
-								b.efectivo,
-								b.tarjeta,
-								b.credito,
+								b.subtotal,
+								b.descuento,
 								b.venta,
 								c.nombre,
 								c.nit,
@@ -101,7 +100,7 @@ class Pedido_model extends CI_Model
 						->from("factura a")
 						->join("venta_generada b","a.factura= b.factura")
 						->join("cliente c","b.cliente = c.cliente")
-						->join("venta_producto d","b.cliente = c.cliente")
+						->join("venta_producto d","b.venta = d.venta")
 						->where("b.venta", $this->venta->venta)
 						->where("d.eliminado", 0)
 						->where("a.anulado", 0)
@@ -135,6 +134,10 @@ class Pedido_model extends CI_Model
 			$this->cdato["nombre"] = $arg["cliente"];
 		}
 
+		if(isset($this->empresa)){
+			$this->cdato["empresa"] = $this->empresa;
+		}
+
 		if(verDatos($arg, "nit")){
 			$this->cdato["nit"] = $arg["nit"];
 		}
@@ -145,18 +148,6 @@ class Pedido_model extends CI_Model
 
 		if(verDatos($arg, "venta")){
 			$this->vdato["venta"] = $arg["venta"];
-		}
-
-		if(verDatos($arg, "efectivo")){
-			$this->vdato["efectivo"] = $arg["efectivo"];
-		}
-
-		if(verDatos($arg, "tarjeta")){
-			$this->vdato["tarjeta"] = $arg["tarjeta"];
-		}
-
-		if(verDatos($arg, "credito")){
-			$this->vdato["credito"] = $arg["credito"];
 		}
 
 		if(verDatos($arg, "descuento")){
@@ -191,9 +182,10 @@ class Pedido_model extends CI_Model
 		# Traer Correlativo
 		$fac = $this->getfacturacorrelativo();
 		$this->db
-			 ->set("numero", $fac->numero)
-			 ->set("serie", $fac->serie)
-			 ->set("monto", $arg["total"]);
+			 ->set("numero",  $fac->numero)
+			 ->set("serie",   $fac->serie)
+			 ->set("empresa", $this->empresa)
+			 ->set("monto",   $arg["total"]);
 
 		if($this->db->insert("factura")){
 			$this->verFactura($this->db->insert_id());
@@ -219,6 +211,39 @@ class Pedido_model extends CI_Model
 		}
 
 		return false;
+
+	}
+
+	function guardaFormapago($args=array()){
+		if(verDatos($args, "pago")){
+			$this->db
+				 ->where("pago", $args["pago"]);
+			if($this->db->update("pago", $args)){
+				return true;
+			} else {
+				$this->setMensaje("Error al actualizar el producto (DB)");
+				return false;
+			}
+		} else {
+			$this->db
+				 ->set("usuario", $_SESSION["UsuarioID"]);
+			if($this->db->insert("pago", $args)){
+				return true;
+			} else {
+				$this->setMensaje("Error al agregar la forma de pago (DB)");
+				return true;
+			}
+		}
+		return false;
+	}
+
+	function getFormaPago(){
+		return $this->db
+					->where("venta", $this->venta->venta)
+					->where("anulado", 0)
+					->join("pago b","a.tipo_pago = b.tipo_pago")
+					->get("tipo_pago a")
+					->result();
 
 	}
 }

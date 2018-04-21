@@ -37,12 +37,12 @@ if($resumen){
 <table class="table">
 	<tr>
 		<td>
-			<button class="btn btn-sm btn-primary todo" onclick="cargarCobro(<?php echo $venta; ?>)">
+			<button class="btn btn-sm btn-primary todo btnV" onclick="cargarCobro(<?php echo $venta; ?>)">
 				<i class="glyphicon glyphicon-ok"></i> Completar Venta
 			</button>
 		</td>
 		<td>
-			<button class="btn btn-sm btn-danger todo" onclick="accionVenta(<?php echo $venta;?>, 3)">
+			<button class="btn btn-sm btn-danger todo btnV" onclick="accionVenta(<?php echo $venta;?>, 3)">
 			<i class="glyphicon glyphicon-remove"></i> Anular Venta
 			</button>
 		</td>

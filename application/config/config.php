@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/venta/';
+//$config['base_url'] = 'http://apps.systra.online/venta/';
 
 /*
 |--------------------------------------------------------------------------

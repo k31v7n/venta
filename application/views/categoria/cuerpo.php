@@ -8,7 +8,7 @@
 					<i class="glyphicon glyphicon-menu-hamburger"></i>
 				</button>
 			<a class="navbar-brand" href="javascript:;">
-				Categorias
+				Productos
 			</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myproducto">
