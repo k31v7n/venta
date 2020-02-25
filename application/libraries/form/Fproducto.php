@@ -56,7 +56,7 @@ class Fproducto {
 		$this->datos['codigoalterno'] = form_input(
 			array(
 				"id"    => "codigoalterno",
-				"name"  => "codigo_alterno",
+				"name"  => "codigo",
 				"class" => "form-control"
 			),
 			(($this->pdato)?$this->pdato->codigo_alterno:"")

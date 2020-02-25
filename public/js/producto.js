@@ -135,5 +135,6 @@ $(document).on("submit","#FxormProducto", function(event){
 		notificar(data.exito, data.mensaje);
 		abrirForm({"opcion":data.opcion,"registro":data.producto});
 		abrirForm({"opcion":4,"registro":data.registro});
+		abrirForm({"opcion":3})
 	})
 })

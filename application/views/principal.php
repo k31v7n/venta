@@ -31,7 +31,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta charset="UTF-8">
-	<title>Ventas Arnol</title>
+	<title>VM-POS</title>
 </head>
 <body id="ver">
 	<?php if (isset($menu)): ?>

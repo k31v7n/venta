@@ -2,12 +2,10 @@
 class Pedido extends CI_Controller
 {
 
-	function __construct() {
+	public function __construct()
+	{
 		parent:: __construct();
-		$this->load->model(array(
-						"Venta_model"
-						));
-
+		$this->load->model("Venta_model");
 		$this->datos['scripts'] = script();
 	}
 
@@ -86,7 +84,8 @@ class Pedido extends CI_Controller
 
 	}
 
-	function formcobrar($venta){
+	public function formcobrar($venta)
+	{
 		$ven = new Venta_model($venta);
 		$this->datos["montos"] = $ven->getResumenVenta();
 		$this->datos["accion"] = base_url("index.php/pedido/cobrar");
@@ -95,7 +94,8 @@ class Pedido extends CI_Controller
 		$this->load->view("venta/formcobrar", $this->datos);
 	}
 
-	function cobrar(){
+	public function cobrar()
+	{
 		$ven = new Venta_model($_POST["venta"]);
 		if (!$this->input->post("cliente")){
 			$_POST["cliente"] = "C/F";
@@ -130,7 +130,8 @@ class Pedido extends CI_Controller
 		$this->load->view("venta/detallecobro", $this->datos);
 	}
 
-	function formtipopago($venta){
+	public function formtipopago($venta)
+	{
 		$v = new Venta_model($venta);
 		$lpago  = $v->getFormaPago();
 		$vtotal = $v->getResumenVenta()->total;
@@ -143,7 +144,8 @@ class Pedido extends CI_Controller
 		$this->load->view("venta/pago", $this->datos);	
 	}
 
-	function guardapago(){
+	public function guardapago()
+	{
 		$exito   = 0;
 		$mensaje = "";
 		if($this->Venta_model->guardaFormapago($_POST)){
